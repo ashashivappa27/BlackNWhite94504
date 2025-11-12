@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crash Reporting Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+ <script defer src='https://portalstage.catchpoint.com/jp/106178/latest/InitialLoadScript.js'></script>
+</head>
+<body>
+    <h1>Crash Reporting Test Page</h1>
+    <p>Click the button below to simulate a crash.</p>
+    <button onclick="simulateCrash()">Simulate Crash</button>
+
+    <script>
+        function simulateCrash() {
+            // Intentionally throw an error
+            throw new Error("Test crash: This is a simulated error for crash reporting.");
+        Optional: Global error handler
+        window.onerror = function(message, source, lineno, colno, error) {
+            console.error("Global Error Captured:", { message, source, lineno, colno, error });
+            alert("Crash captured! Check your reporting tool.");
+            // Here you can send the error details to your crash reporting service
+        };
+    </script>
+</body>
+</html>
