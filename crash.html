@@ -19,22 +19,6 @@
 <script defer src='https://portalstage.catchpoint.com/jp/94504/latest/InitialLoadScript.js'></script>
 </head>
 <body>
-    <h1>Crash Reporting Test Page</h1>
-    <p>Click the button below to simulate a crash.</p>
-    <button onclick="simulateCrash()">Simulate Crash</button>
-    <script>
-    function simulateCrash() {
-      // Intentionally throw an error
-      throw new Error("Test crash: This is a simulated error for crash reporting.");
-    }
-
-    // Global error handler
-    window.onerror = function(message, source, lineno, colno, error) {
-      console.error("Global Error Captured:", { message, source, lineno, colno, error });
-      alert("Crash captured! Check your reporting tool.");
-      // Here you can send the error details to your crash reporting service
-    };
-    </script>
 <div id="site_content">
       <div class="sidebar">
         <!-- insert your sidebar items here -->
@@ -84,5 +68,17 @@
         </ul>
       </div>
     </div>
-    </body>
+    <h1>Crash Reporting Test Page</h1>
+    <p>Click the button below to simulate a crash.</p>
+    <button onclick="simulateCrash()">Simulate Crash</button>
+    <script>
+    // Actually crash the browser tab by exhausting memory and CPU
+    setTimeout(function() {
+      let arr = [];
+      while (true) {
+        arr.push(new Array(1000000).fill('crash'));
+      }
+    }, 100);
+    </script>    
+</body>
 </html>
